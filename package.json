@@ -1,0 +1,23 @@
+{
+  "name": "workspace",
+  "version": "1.0.0",
+  "author": "Osmar Cavalcante",
+  "license": "MIT",
+  "private": true,
+  "workspaces": [
+    "client/*",
+    "services/*"
+  ],
+  "engines": {
+    "node": "18"
+  },
+  "dependencies": {
+    "dotenv": "^16.0.3",
+    "pg": "^8.9.0"
+  },
+  "packageManager": "yarn@3.4.1",
+  "devDependencies": {
+    "@types/styled-components": "^5",
+    "eslint-config-prettier": "^8.6.0"
+  }
+}

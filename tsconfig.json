@@ -1,0 +1,15 @@
+{
+  "compilerOptions": {
+    "module": "commonjs",
+    "strict": true,
+    "strictPropertyInitialization": false,
+    "declaration": true,
+    "removeComments": true,
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "allowSyntheticDefaultImports": true,
+    "target": "es2017",
+    "incremental": true,
+    "skipLibCheck": true
+  }
+}

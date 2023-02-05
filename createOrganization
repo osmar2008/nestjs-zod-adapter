@@ -1,0 +1,5 @@
+#!/bin/zsh
+
+ 
+curl -X POST -H 'Content-type: application/json' -d "$1" localhost:4001/organization
+

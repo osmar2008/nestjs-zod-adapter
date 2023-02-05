@@ -1,0 +1,32 @@
+{
+  // These tasks will run in order when initializing your CodeSandbox project.
+  "setupTasks": [
+    {
+      "name": "Start Database",
+      "command": "cd /project/home/$LOGNAME/workspace && yarn && docker-compose up -d && sleep 5 && zsh setup-db.sh"
+    }
+  ],
+  // These tasks can be run from CodeSandbox. Running one will open a log in the app.
+  "tasks": {
+    "management-service": {
+      "name": "Start Management Service",
+      "command": "yarn workspace management run start:dev",
+      "runAtStart": true
+    },
+    "core-service": {
+      "name": "Start Core Service",
+      "command": "yarn workspace core run start:dev",
+      "runAtStart": true
+    },
+    "todos-client": {
+      "name": "Start Todos Client",
+      "command": "yarn workspace todos run start",
+      "runAtStart": true
+    },
+    "admin-client": {
+      "name": "Start Admin Client",
+      "command": "yarn workspace admin run start",
+      "runAtStart": true
+    }
+  }
+}
