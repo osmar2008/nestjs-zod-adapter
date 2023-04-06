@@ -1,9 +1,9 @@
 import { ArgumentMetadata, Injectable, PipeTransform, ValidationPipe } from '@nestjs/common'
 import { z, ZodObject } from 'zod'
-import { OrganizationService } from '../organization/organization.service'
+import { OrganizationService } from '../organization.service'
 import { ZodType } from 'zod/lib/types'
 import { ValidationPipeOptions } from '@nestjs/common/pipes/validation.pipe'
-import { Organization } from '../organization/entities/organization.entity'
+import { Organization } from '../entities/organization.entity'
 
 const NameSchema = z.string().min(1).length(255).brand('Name')
 

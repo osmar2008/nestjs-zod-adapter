@@ -1,25 +1,44 @@
-import { BadRequestException, Body, Controller, Delete, Get, Param, Patch, Post, UseInterceptors } from '@nestjs/common'
+import {
+  BadRequestException,
+  Body,
+  Controller,
+  createParamDecorator,
+  Delete,
+  Get,
+  Inject,
+  Injectable,
+  Optional,
+  Param,
+  Patch,
+  Post,
+  UseInterceptors,
+  UsePipes,
+} from '@nestjs/common'
+import { z, ZodSchema, ZodType } from 'zod'
 import { OrganizationService } from './organization.service'
 import { CreateOrganizationDto } from './dto/create-organization.dto'
 import { UpdateOrganizationDto } from './dto/update-organization.dto'
 import { ErrorHandlingInterceptor } from '../error-handling/error-handling.interceptor'
 import { Organization } from './entities/organization.entity'
-
+import {
+  CreateOrganizationDtoSchemaProvider,
+  organizationSchema,
+} from './validator/validator.pipe'
 
 @Controller('organization')
 export class OrganizationController {
+
   constructor(private readonly organizationService: OrganizationService) {
   }
 
   @Post()
   async create(@Body() createOrganizationDto: CreateOrganizationDto) {
-    const organizations = await Organization.query().where({ name: createOrganizationDto.name })
-
-    if (organizations.length > 0) {
-      throw new BadRequestException('name is already in use')
+    if (!createOrganizationDto.result?.success) {
+      throw new BadRequestException(createOrganizationDto.result?.error)
     }
 
-    return this.organizationService.create(createOrganizationDto)
+    return this.organizationService.create(createOrganizationDto.result.data)
+
   }
 
   @Get()

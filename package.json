@@ -4,10 +4,13 @@
   "author": "Osmar Cavalcante",
   "license": "MIT",
   "private": true,
-  "workspaces": [
-    "client/*",
-    "services/*"
-  ],
+  "workspaces": {
+    "packages": [
+      "client/*",
+      "services/*",
+      "shared/*"
+    ]
+  },
   "engines": {
     "node": "18"
   },

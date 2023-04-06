@@ -1,27 +1,8 @@
 import { BaseModel } from 'src/db/base-model'
+import type { CreateOrganizationDtoType } from '../dto/create-organization.dto'
 
 export class Organization extends BaseModel {
   static tableName = 'organization'
 
-  name: string
+  name: CreateOrganizationDtoType['name']
 }
-
-type Bla = { name: string }
-
-class Test implements Bla {
-  name: string
-
-  getName() {
-    return this.name
-  }
-}
-
-
-type NonFunctionsProperties<T> = {
-  [K in keyof T]: T[K] extends Function ? never : K
-}[keyof T]
-
-
-type Properties = NonFunctionsProperties<InstanceType<typeof Organization>>
-
-type test = Omit<Properties, '$modelClass' | 'QueryBuilderType'>

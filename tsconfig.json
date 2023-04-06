@@ -3,6 +3,17 @@
     "module": "commonjs",
     "strict": true,
     "strictPropertyInitialization": false,
+    "paths": {
+      "@services/*": [
+        "services/*/src"
+      ],
+      "@client/*": [
+        "client/*/src"
+      ],
+      "@shared/*": [
+        "shared/*/src"
+      ]
+    },
     "declaration": true,
     "removeComments": true,
     "emitDecoratorMetadata": true,
