@@ -1,13 +1,14 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common'
+import { Controller, Get, Post, Body, Patch, Param, Delete, Provider } from '@nestjs/common'
 import { UserService } from './user.service'
-import { UserDTO } from './dto/create-user.dto'
+import { CreateUserDto } from './dto/create-user.dto'
 
 @Controller('user')
 export class UserController {
-  constructor(private readonly userService: UserService) {}
+  constructor(private readonly userService: UserService) {
+  }
 
   @Post()
-  async create(@Body() user: UserDTO) {
+  async create(@Body() user: CreateUserDto) {
     return this.userService.create(user)
   }
 
@@ -22,7 +23,7 @@ export class UserController {
   }
 
   @Patch(':id')
-  update(@Param('id') id: string, @Body() user: Partial<UserDTO>) {
+  update(@Param('id') id: string, @Body() user: Partial<CreateUserDto>) {
     return this.userService.update(+id, user)
   }
 
@@ -31,3 +32,14 @@ export class UserController {
     return this.userService.remove(+id)
   }
 }
+
+export const userProviders: Provider[] = [
+  {
+    provide: UserController,
+    useClass: UserController,
+  },
+  {
+    provide: CreateUserDto,
+    useClass: CreateUserDto,
+  },
+]

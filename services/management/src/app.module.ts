@@ -1,11 +1,11 @@
-import { Module } from '@nestjs/common'
+import { Module, ValidationPipe } from '@nestjs/common'
 import { ConfigModule } from '@nestjs/config'
 import { AppController } from './app.controller'
 import { AppService } from './app.service'
 import { UserModule } from './user/user.module'
 import { OrganizationModule } from './organization/organization.module'
 import { APP_PIPE } from '@nestjs/core'
-import { AdapterValidationPipe } from './adapter-validation.pipe'
+import { ValidationAdapterPipe } from './validation-adapter.pipe'
 
 @Module({
   imports: [
@@ -18,9 +18,10 @@ import { AdapterValidationPipe } from './adapter-validation.pipe'
   controllers: [AppController],
   providers: [
     AppService,
+
     {
       provide: APP_PIPE,
-      useClass: AdapterValidationPipe,
+      useClass: ValidationAdapterPipe,
     },
   ],
 })

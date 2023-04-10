@@ -1,6 +1,11 @@
-import { IsEmail, Length } from 'class-validator'
+import { IS_UUID, IsEmail, Length } from 'class-validator'
 
-export class UserDTO {
+export class CreateUserDto {
+
+  organizationId: string
+
+  role: string
+
   @IsEmail()
   email: string
 

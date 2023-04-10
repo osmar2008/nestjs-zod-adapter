@@ -4,6 +4,7 @@ import { z, SafeParseReturnType } from 'zod'
 import { CreateOrganizationSharedSchema, CreateOrganizationSharedDtoType, NameSharedSchema } from '@shared/types'
 import { OrganizationService } from '../organization.service'
 import { RefinementCtx } from 'nestjs-zod/z'
+import { ZodDtoProviderInterface } from '../../shared/ZodDtoProviderInterface'
 
 
 const isOrganizationNameUnique = (organizationService: OrganizationService) => async (name: string, context: RefinementCtx) => {
@@ -31,7 +32,7 @@ export type CreateOrganizationDtoType = z.infer<CreateOrganizationDtoSchemaType>
 
 
 @Injectable()
-export class CreateOrganizationDto {
+export class CreateOrganizationDto implements ZodDtoProviderInterface {
   private static readonly isZodDto = true
   private _result: SafeParseReturnType<CreateOrganizationSharedDtoType, CreateOrganizationDtoType>
 

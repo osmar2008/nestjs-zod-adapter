@@ -1,9 +1,9 @@
-import { Model } from 'objection'
+import { BaseModel } from '../../db/base-model'
 
-export class User extends Model {
+export class User extends BaseModel {
   static tableName = 'user'
 
-  companyId: string
+  organizationId: string
   role: string
   name: string
   email: string
